@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service App Homepage</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">TideTrade</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="hit.html">How It Works</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About TideTrade</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="container text-center">
+      <h1>Welcome to TideTrade</h1>
+      <p>Find trusted services near you</p>
+      <form class="search-form">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search services...">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="featured-services">
+    <div class="container">
+      <h2 class="text-center mb-4">Featured Service Categories</h2>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card">
+            <img src="C:\Users\USER\services-platform\woman-getting-her-hair-done-salon_23-2148976118.avif" class="card-img-top" alt="Personal Services">
+            <div class="card-body">
+              <h5 class="card-title">Personal Services</h5>
+              <p class="card-text">Offering personal grooming, fitness training, and wellness services tailored to individual needs.</p>
+              <ul class="list-group list-group-flush" id="personal-services-list">
+                <!-- Services will be dynamically added here -->
+              </ul>
+              <a href="#" class="btn btn-primary" onclick="loadServices('personal')">Explore Services</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card">
+            <img src="C:\Users\USER\services-platform\laughing-portrait-black-woman-cleaning-600nw-2326402989.webp" class="card-img-top" alt="Home Services">
+            <div class="card-body">
+              <h5 class="card-title">Home Services</h5>
+              <p class="card-text">Providing household maintenance, repair, and cleaning services to keep homes in top condition.</p>
+              <ul class="list-group list-group-flush" id="home-services-list">
+                <!-- Services will be dynamically added here -->
+              </ul>
+              <a href="#" class="btn btn-primary" onclick="loadServices('home')">Explore Services</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card">
+            <img src="C:\Users\USER\services-platform\photographer-with-copy-space_23-2148503534.avif" class="card-img-top" alt="Event and Creative Services">
+            <div class="card-body">
+              <h5 class="card-title">Event and Creative Services</h5>
+              <p class="card-text">Creating memorable events with photography, event planning, and artistic services.</p>
+              <ul class="list-group list-group-flush" id="event-services-list">
+                <!-- Services will be dynamically added here -->
+              </ul>
+              <a href="#" class="btn btn-primary" onclick="loadServices('event')">Explore Services</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card">
+            <img src="C:\Users\USER\services-platform\istockphoto-1194709125-612x612.jpg" class="card-img-top" alt="Delivery and Errand Services">
+            <div class="card-body">
+              <h5 class="card-title">Delivery and Errand Services</h5>
+              <p class="card-text">Offering delivery of goods, grocery shopping, and errand running services for convenience.</p>
+              <ul class="list-group list-group-flush" id="delivery-services-list">
+                <!-- Services will be dynamically added here -->
+              </ul>
+              <a href="#" class="btn btn-primary" onclick="loadServices('delivery')">Explore Services</a>
+            </div>
+          </div>
+        </div>
+        <!-- Add more service categories as needed -->
+      </div>
+    </div>
+  </section>
+  <section id="featured-providers">
+    <div class="container">
+      <h2 class="text-center mb-4">Featured Service Providers</h2>
+      <div class="row">
+        <!-- Example provider cards -->
+        <div class="col-lg-3 col-md-4 mb-4">
+          <div class="card">
+            <img src="C:\Users\USER\services-platform\istockphoto-1370742180-612x612.jpg" class="card-img-top" alt="Service Provider 1">
+            <div class="card-body">
+              <h5 class="card-title">Kevo Ouma</h5>
+              <p class="card-text">Specializes in Hair Styling and Makeup</p>
+              <a href="#" class="btn btn-primary">View Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 mb-4">
+          <div class="card">
+            <img src="C:\Users\USER\services-platform\images.jfif" class="card-img-top" alt="Service Provider 2">
+            <div class="card-body">
+              <h5 class="card-title">Halima Juma</h5>
+              <p class="card-text">Expert in Plumbing and Home Repair</p>
+              <a href="#" class="btn btn-primary">View Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 mb-4">
+          <div class="card">
+            <img src="C:\Users\USER\services-platform\download.jfif" class="card-img-top" alt="Service Provider 3">
+            <div class="card-body">
+              <h5 class="card-title">Emily Kageni</h5>
+              <p class="card-text">Experienced Event Planner and Photographer</p>
+              <a href="#" class="btn btn-primary">View Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 mb-4">
+          <div class="card">
+            <img src="C:\Users\USER\services-platform\istockphoto-1370742180-612x612.jpg" class="card-img-top" alt="Service Provider 4">
+            <div class="card-body">
+              <h5 class="card-title">Mercy Wambui</h5>
+              <p class="card-text">Efficient in Grocery Delivery and Errand Services</p>
+              <a href="#" class="btn btn-primary">View Profile</a>
+            </div>
+          </div>
+        </div>
+        <!-- Add more provider cards as needed -->
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="bg-light text-center py-3">
+    <p>&copy; TideTrade.</p>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script>
+    function loadServices(category) {
+      // Simulated data for demonstration purposes
+      const services = {
+        personal: ['Hair Styling', 'Fitness Training', 'Massage Therapy'],
+        home: ['Plumbing Services', 'House Cleaning', 'Electrical Repairs'],
+        event: ['Event Photography', 'Graphic Design', 'Event Planning'],
+        delivery: ['Grocery Delivery', 'Parcel Delivery', 'Personal Shopping']
+      };
+
+      // Clear previous list items
+      const listElement = document.getElementById(`${category}-services-list`);
+      listElement.innerHTML = '';
+
+      // Populate list with services
+      services[category].forEach(service => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('list-group-item');
+        listItem.textContent = service;
+        listElement.appendChild(listItem);
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+        

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | TideTrade</title>
+  <link rel="stylesheet" href="login.css"> <!-- Link to your custom CSS file -->
+</head>
+<body>
+  <div class="login-container">
+    <form id="login-form" class="login-form">
+      <h2>Login to TideTrade</h2>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <label for="user-type">Login as</label>
+        <select id="user-type" name="user-type" class="form-control" required>
+          <option value="customer">Customer</option>
+          <option value="service_provider">Service Provider</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <p class="register-link">Not registered yet? <a href="register.html">Register here</a></p>
+      <p class="forgot-password-link"><a href="forgot-password.html">Forgot Password?</a></p>
+    </form>
+  </div>
+
+  <!-- JavaScript for form validation and submission handling -->
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting
+
+      // Basic validation (you should add more comprehensive validation)
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const userType = document.getElementById('user-type').value;
+
+      if (!email || !password || !userType) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      // Here you would typically make an AJAX request to your server-side script to handle login
+      // Example using fetch API (replace URL with your backend endpoint)
+      fetch('login.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password, userType }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Login successful!');
+          // Redirect to homepage or appropriate dashboard upon successful login
+          window.location.href = 'index.html';
+        } else {
+          alert('Login failed. Please check your credentials.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+      });
+    });
+  </script>
+</body>
+</html>
