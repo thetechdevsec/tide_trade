@@ -9,26 +9,37 @@
 <body>
     <div class="container">
         <h2>User Registration</h2>
-        <form action="register.php" method="POST">
+        <form class="user-registration-form">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" class="username-input" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" class="email-input" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" class="password-input" required>
             </div>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required>
+                <input type="password" id="confirm_password" name="confirm_password" class="confirm-password-input" required>
             </div>
-            <button type="submit" name="register">Register</button>
+            <div class="form-group">
+                <label for="user_type">User Type:</label>
+                <select id="user_type" name="user_type" class="user-type-select" required>
+                    <option value="" disabled selected>Select user type</option>
+                    <option value="provider">Provider</option>
+                    <option value="client">Client</option>
+                </select>
+            </div>
+            <button type="submit" class="register-button" name="register">Register</button>
         </form>
+        <div class="signin-option">
+            Already have an account? <a href="/login.html">Sign In</a>
+        </div>
     </div>
+    <script src="register.js"></script>
 </body>
 </html>
-
