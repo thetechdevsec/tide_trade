@@ -18,14 +18,6 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
       </div>
-      <div class="form-group">
-        <label for="user-type">Login as</label>
-        <select id="user-type" name="user-type" class="form-control" required>
-          <option value="customer">Customer</option>
-          <option value="service_provider">Service Provider</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
       <button type="submit" class="btn btn-primary">Login</button>
       <p class="register-link">Not registered yet? <a href="register.html">Register here</a></p>
       <p class="forgot-password-link"><a href="forgot-password.html">Forgot Password?</a></p>
@@ -40,27 +32,31 @@
       // Basic validation (you should add more comprehensive validation)
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value.trim();
-      const userType = document.getElementById('user-type').value;
 
-      if (!email || !password || !userType) {
+      if (!email || !password) {
         alert('Please fill in all fields');
         return;
       }
 
-      // Here you would typically make an AJAX request to your server-side script to handle login
-      // Example using fetch API (replace URL with your backend endpoint)
-      fetch('login.php', {
+      // Make an AJAX request to your server-side script to handle login
+      fetch('https://mk-services.onrender.com/api/token/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, userType }),
+        body: JSON.stringify({ email, password }),
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
-        if (data.success) {
+        if (data.access && data.refresh) {
+          localStorage.setItem('access', data.access);
+          localStorage.setItem('refresh', data.refresh);
           alert('Login successful!');
-          // Redirect to homepage or appropriate dashboard upon successful login
           window.location.href = 'index.html';
         } else {
           alert('Login failed. Please check your credentials.');
