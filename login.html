@@ -24,12 +24,18 @@
     </form>
   </div>
 
-  <!-- JavaScript for form validation and submission handling -->
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
   <script>
+
+    function decodeJWT(string){
+      var arr = string.split('.');
+      return { header: JSON.parse(atob(arr[0])), payload: JSON.parse(atob(arr[1])), secret: arr[2] }
+    }
+  
     document.getElementById('login-form').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent the form from submitting
 
-      // Basic validation (you should add more comprehensive validation)
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value.trim();
 
@@ -38,7 +44,6 @@
         return;
       }
 
-      // Make an AJAX request to your server-side script to handle login
       fetch('https://mk-services.onrender.com/api/token/', {
         method: 'POST',
         headers: {
@@ -54,34 +59,60 @@
       })
       .then(data => {
         if (data.access && data.refresh) {
-          // Store tokens
           localStorage.setItem('access', data.access);
           localStorage.setItem('refresh', data.refresh);
-          
-          // Fetch user info
-          return fetch('https://mk-services.onrender.com/api/user-info/', {
+
+          const access = localStorage.getItem('access');
+          const decoded = decodeJWT(access);
+          const user_id = decoded.payload.user_id;
+          localStorage.setItem('user_id', user_id);
+
+          fetch(`https://mk-services.onrender.com/services/api/users/${user_id}/`, {
+            method: 'GET',
             headers: {
-              'Authorization': `Bearer ${data.access}`
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${access}`
+            },
+          })
+          .then(response => {
+            try {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json();
+            } catch (error) {
+              console.log(error);
             }
+          })
+          .then(data => {
+            console.log(data);
+            switch (data.user_type) {
+              case 'client':
+                localStorage.setItem('user_type', 'client');
+                window.location.href = 'client.html';
+                break;
+              case 'provider':
+                localStorage.setItem('user_type', 'provider');
+                window.location.href = 'provider.html';
+                break;
+              case 'admin':
+                localStorage.setItem('user_type', 'admin');
+                window.location.href = 'admin.html';
+                break;
+              default:
+                throw new Error('Invalid user type');
+            }
+            // Optionally store additional user data
+            if (data.email) {
+              localStorage.setItem('email', data.email);
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert(`An error occurred: ${error.message}`);
           });
         } else {
           throw new Error('Invalid login credentials');
-        }
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(userInfo => {
-        // Redirect based on user role
-        if (userInfo.type === 'provider') {
-          window.location.href = 'provider.html'; // Redirect to provider page
-        } else if (userInfo.type=== 'customer') {
-          window.location.href = 'customer-page.html'; // Redirect to customer page
-        } else {
-          throw new Error('Unexpected user role');
         }
       })
       .catch(error => {
@@ -90,6 +121,6 @@
       });
     });
   </script>
+
 </body>
 </html>
-
