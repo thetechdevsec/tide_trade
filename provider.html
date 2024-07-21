@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TideTrade - Provider Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="provider.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-primary text-white py-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <h1 class="mb-0">TideTrade</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">About TideTrade</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-md-3 sidebar">
+                <div class="profile-pic text-center">
+                    <img src="profile.jpg" alt="Profile Picture" class="img-fluid rounded-circle">
+                    <input type="file" id="profilePicUpload" style="display: none;">
+                    <button class="btn btn-pink mt-2" onclick="document.getElementById('profilePicUpload').click();">Upload Picture</button>
+                </div>
+                <nav class="mt-4">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#personal-details"><i class="fas fa-user"></i> Personal Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services"><i class="fas fa-cogs"></i> My Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#bookings"><i class="fas fa-calendar-check"></i> Booking Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#reviews"><i class="fas fa-star"></i> My Reviews</a>
+                        </li>
+                    </ul>
+                </nav>
+                <button id="logout" class="btn btn-danger mt-4 w-100">Logout</button>
+            </aside>
+            <main class="col-md-9 main-content">
+                <section id="personal-details" class="section mb-4">
+                    <h1 class="mb-3">Personal Details</h1>
+                    <div class="card p-3 border-styled">
+                        <div class="card-body">
+                            <p><strong>Name:</strong> Provider Name</p>
+                            <p><strong>Email:</strong> provider@example.com</p>
+                            <p><strong>Phone:</strong> (123) 456-7890</p>
+                            <button id="editProfile" class="btn btn-primary">Edit Profile</button>
+                        </div>
+                    </div>
+                </section>
+                <section id="services" class="section mb-4">
+                    <h2 class="mb-3">My Services</h2>
+                    <div class="row" id="serviceList">
+                        <!-- Service items will be populated here by JS -->
+                    </div>
+                    <button id="addService" class="btn btn-success mt-3">Add New Service</button>
+                </section>
+                <section id="bookings" class="section mb-4">
+                    <h2 class="mb-3">Booking Requests</h2>
+                    <div class="row" id="bookingList">
+                        <!-- Booking items will be populated here by JS -->
+                    </div>
+                </section>
+                <section id="reviews" class="section mb-4">
+                    <h2 class="mb-3">My Reviews</h2>
+                    <div class="row" id="reviewList">
+                        <!-- Review items will be populated here by JS -->
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="provider.js"></script>
+</body>
+</html>
+
+
+
+
+

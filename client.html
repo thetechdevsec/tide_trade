@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Page | TideTrade</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="client.css"> <!-- Link to your custom CSS file -->
+</head>
+<body>
+  <header class="bg-primary text-white p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="mb-0">TideTrade</h1>
+      <nav class="d-flex">
+        <a href="#services" class="nav-link text-white mx-2">Services</a>
+        <a href="#about" class="nav-link text-white mx-2">About</a>
+        <a href="#how-it-works" class="nav-link text-white mx-2">How It Works</a>
+        <a href="#contact" class="nav-link text-white mx-2">Contact</a>
+        <button id="logout" class="btn btn-danger ml-2">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container mt-4">
+    <div class="row">
+      <aside class="col-md-3">
+        <div class="sidebar">
+          <h4 class="sidebar-title">My Dashboard</h4>
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action active" href="#profile">
+              <i class="fas fa-user mr-2"></i> Profile
+            </a>
+            <a class="list-group-item list-group-item-action" href="#bookings">
+              <i class="fas fa-calendar-check mr-2"></i> Bookings
+            </a>
+            <a class="list-group-item list-group-item-action" href="#reviews">
+              <i class="fas fa-star mr-2"></i> Reviews
+            </a>
+            <a class="list-group-item list-group-item-action" href="#providers">
+              <i class="fas fa-users mr-2"></i> Providers
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <main class="col-md-9">
+        <section id="profile" class="section mb-4">
+          <h2>Client Profile</h2>
+          <div class="card p-3">
+            <div class="card-body">
+              <p><strong>Name:</strong> Client Name</p>
+              <p><strong>Email:</strong> client@example.com</p>
+              <p><strong>Phone:</strong> (123) 456-7890</p>
+              <button id="editProfile" class="btn btn-primary">Edit Profile</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="bookings" class="section mb-4">
+          <h2>My Bookings</h2>
+          <div class="row">
+            <!-- Booking item example -->
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <p><strong>Provider:</strong> Service Provider Name</p>
+                  <p><strong>Service:</strong> Haircut</p>
+                  <p><strong>Date:</strong> 2024-07-21</p>
+                </div>
+              </div>
+            </div>
+            <!-- Repeat booking items as needed -->
+          </div>
+        </section>
+
+        <section id="reviews" class="section mb-4">
+          <h2>My Reviews</h2>
+          <div class="row">
+            <!-- Review item example -->
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <p><strong>Provider:</strong> Service Provider Name</p>
+                  <p><strong>Review:</strong> Great service!</p>
+                  <p><strong>Rating:</strong> ★★★★☆</p>
+                </div>
+              </div>
+            </div>
+            <!-- Repeat review items as needed -->
+          </div>
+        </section>
+
+        <section id="providers" class="section mb-4">
+          <h2>Service Providers</h2>
+          <div class="row">
+            <!-- Provider item example -->
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <img src="provider-image.jpg" class="card-img-top" alt="Provider Image">
+                <div class="card-body">
+                  <h5 class="card-title">Provider Name</h5>
+                  <p class="card-text">Description of the provider</p>
+                  <a href="#" class="btn btn-primary">View Profile</a>
+                </div>
+              </div>
+            </div>
+            <!-- Repeat provider items as needed -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="client.js"></script> <!-- Link to your custom JS file -->
+</body>
+</html>
+
+
+

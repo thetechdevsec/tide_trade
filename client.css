@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    border-bottom: 3px solid #0056b3;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  header nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  header nav a:hover {
+    text-decoration: underline;
+  }
+  
+  header .btn-danger {
+    background-color: #dc3545;
+    border: none;
+  }
+  
+  header .btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  .sidebar {
+    background-color: #f1f1f1;
+    border-right: 2px solid #ddd;
+    padding: 1rem;
+  }
+  
+  .sidebar-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #007bff;
+  }
+  
+  .list-group-item {
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .list-group-item i {
+    font-size: 1.2rem;
+  }
+  
+  .list-group-item.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .card img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  

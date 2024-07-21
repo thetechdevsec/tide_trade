@@ -1,26 +1,122 @@
-<?php include 'header.html'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - TideTrade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #ddd 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .content {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .step {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            transition: transform 0.3s ease;
+        }
+        .step:hover {
+            transform: scale(1.05);
+        }
+        .step img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .step h2 {
+            text-align: center;
+            color: #333;
+        }
+        .step p {
+            text-align: center;
+        }
+        .step button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .step button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>How TideTrade Works</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="step" id="step1">
+                <h2>Step 1: Sign Up</h2>
+                <img src="https://cdn-icons-png.freepik.com/256/5761/5761226.png?ga=GA1.1.1680999883.1720960702&semt=ais_hybrid" alt="Sign Up">
+                <p>Register on TideTrade to create your profile and start exploring our services.</p>
+                <button onclick="showDetails('step1')">Learn More</button>
+                <div class="details" style="display: none;">
+                    <p>By signing up, you'll have access to a range of services tailored to your needs. Fill out your profile to get personalized recommendations.</p>
+                </div>
+            </div>
+            <div class="step" id="step2">
+                <h2>Step 2: Browse Services</h2>
+                <img src="https://cdn-icons-png.freepik.com/256/1055/1055645.png?ga=GA1.1.1680999883.1720960702&semt=ais_hybrid" alt="Browse Services">
+                <p>Explore a variety of services offered by local professionals and choose what suits you best.</p>
+                <button onclick="showDetails('step2')">Learn More</button>
+                <div class="details" style="display: none;">
+                    <p>Our platform allows you to filter services by category, location, and ratings to find the perfect match.</p>
+                </div>
+            </div>
+            <div class="step" id="step3">
+                <h2>Step 3: Book and Enjoy</h2>
+                <img src="https://cdn-icons-png.freepik.com/256/5038/5038849.png?ga=GA1.1.1680999883.1720960702&semt=ais_hybrid" alt="Book and Enjoy">
+                <p>Book your chosen service and enjoy a seamless experience with TideTrade.</p>
+                <button onclick="showDetails('step3')">Learn More</button>
+                <div class="details" style="display: none;">
+                    <p>Our booking system is straightforward and secure. You can manage your appointments and track service history easily.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<main>
-    <h1>How It Works</h1>
-    <section class="how_it_works">
-        <h2>For Customers</h2>
-        <ol>
-            <li><strong>Sign Up:</strong> Create an account on TideTrade.</li>
-            <li><strong>Browse Services:</strong> Explore various services offered by skilled providers.</li>
-            <li><strong>Book a Service:</strong> Select the service you need and book an appointment.</li>
-            <li><strong>Receive Service:</strong> Get the service delivered as per the booking details.</li>
-            <li><strong>Review and Rate:</strong> Provide feedback and rate the service provider.</li>
-        </ol>
+    <script>
+        function showDetails(stepId) {
+            var stepElement = document.getElementById(stepId);
+            var detailsElement = stepElement.querySelector('.details');
+            detailsElement.style.display = detailsElement.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
 
-        <h2>For Service Providers</h2>
-        <ol>
-            <li><strong>Sign Up:</strong> Create an account and set up your service profile.</li>
-            <li><strong>List Your Services:</strong> Provide detailed information about the services you offer.</li>
-            <li><strong>Manage Bookings:</strong> Receive and manage booking requests from customers.</li>
-            <li><strong>Deliver Service:</strong> Provide the service as per the booking details.</li>
-            <li><strong>Get Paid:</strong> Receive payment for the services provided.</li>
-        </ol>
-    </section>
-</main>
 
-<?php include 'footer.html'; ?>
