@@ -23,7 +23,7 @@
             <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="services.html">Services</a>
+            <a class="nav-link" href="#">Services</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="hit.html">How It Works</a>
@@ -34,8 +34,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
+          <li class="nav-item" id="auth-link">
           </li>
         </ul>
       </div>
@@ -201,9 +200,33 @@
         listElement.appendChild(listItem);
       });
     }
+
+    function updateAuthLink() {
+      const authLink = document.getElementById('auth-link');
+      const accessToken = localStorage.getItem('access');
+      if (accessToken) {
+        // User is logged in, show dashboard link
+        authLink.innerHTML = `
+          <a class="nav-link" href="/admin-wrap-lite-master/html/index.html">Dashboard</a>
+          <a class="nav-link" href="#" onclick="logout()">Logout</a>
+        `;
+      } else {
+        // User is not logged in, show login link
+        authLink.innerHTML = `
+          <a class="nav-link" href="login.html">Login</a>
+        `;
+      }
+    }
+
+
+    function logout() {
+      localStorage.removeItem('access');
+      localStorage.removeItem('refresh');
+      updateAuthLink();
+    }
+
+    // Update the auth link on page load
+    window.onload = updateAuthLink;
   </script>
 </body>
 </html>
-
-
-        
