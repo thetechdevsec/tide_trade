@@ -1,45 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom CSS (if needed) -->
     <link rel="stylesheet" href="register.css">
 </head>
-<body>
-    <div class="container">
-        <h2>User Registration</h2>
-        <form class="user-registration-form">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" class="username-input" required>
+
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-2xl font-semibold text-gray-800">User Registration</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="text-gray-600 hover:text-gray-900">Home</a></li>
+                    <li><a href="services.html" class="text-gray-600 hover:text-gray-900">Services</a></li>
+                    <li><a href="hit.html" class="text-gray-600 hover:text-gray-900">How It Works</a></li>
+                    <li><a href="about.html" class="text-gray-600 hover:text-gray-900">About</a></li>
+                    <li><a href="contact.html" class="text-gray-600 hover:text-gray-900">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="grid justify-center items-center h-screen">
+        <div class="w-full max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h2 class="text-2xl font-semibold mb-4 text-center">Get Started!</h2>
+            <form class="user-registration-form">
+                <div class="form-group mb-4">
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
+                    <input type="text" id="username" name="username"
+                        class="username-input form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+                    <input type="email" id="email" name="email"
+                        class="email-input form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
+                    <input type="password" id="password" name="password"
+                        class="password-input form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="confirm_password"
+                        class="block text-sm font-medium text-gray-700">Confirm Password:</label>
+                    <input type="password" id="confirm_password" name="confirm_password"
+                        class="confirm-password-input form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="user_type" class="block text-sm font-medium text-gray-700">User Type:</label>
+                    <select id="user_type" name="user_type"
+                        class="user-type-select form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        required>
+                        <option value="" disabled selected>Select user type</option>
+                        <option value="provider">Provider</option>
+                        <option value="client">Client</option>
+                    </select>
+                </div>
+                <button type="submit"
+                    class="register-button btn btn-primary w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button>
+            </form>
+            <div class="signin-option text-center mt-4">
+                Already have an account? <a href="login.html" class="text-blue-500 hover:underline">Sign In</a>
             </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" class="email-input" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" class="password-input" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" class="confirm-password-input" required>
-            </div>
-            <div class="form-group">
-                <label for="user_type">User Type:</label>
-                <select id="user_type" name="user_type" class="user-type-select" required>
-                    <option value="" disabled selected>Select user type</option>
-                    <option value="provider">Provider</option>
-                    <option value="client">Client</option>
-                </select>
-            </div>
-            <button type="submit" class="register-button" name="register">Register</button>
-        </form>
-        <div class="signin-option">
-            Already have an account? <a href="/login.html">Sign In</a>
         </div>
     </div>
+
     <script src="register.js"></script>
+
 </body>
+
 </html>
