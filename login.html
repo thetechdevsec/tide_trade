@@ -1,126 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | TideTrade</title>
-  <link rel="stylesheet" href="login.css"> <!-- Link to your custom CSS file -->
-</head>
-<body>
-  <div class="login-container">
-    <form id="login-form" class="login-form">
-      <h2>Login to TideTrade</h2>
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-      <p class="register-link">Not registered yet? <a href="register.html">Register here</a></p>
-      <p class="forgot-password-link"><a href="forgot-password.html">Forgot Password?</a></p>
-    </form>
-  </div>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Login | TideTrade</title>
+      <!-- Include Tailwind CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <!-- Custom CSS (if needed) -->
+      <link rel="stylesheet" href="login.css">
+  </head>
 
-  <!-- JS -->
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
-  <script>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <h1 class="text-2xl font-semibold">TideTrade</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="text-gray-700 hover:text-blue-500">Home</a></li>
+                    <li><a href="services.html" class="text-gray-700 hover:text-blue-500">Services</a></li>
+                    <li><a href="hit.html" class="text-gray-700 hover:text-blue-500">How It Works</a></li>
+                    <li><a href="about.html" class="text-gray-700 hover:text-blue-500">About</a></li>
+                    <li><a href="contact.html" class="text-gray-700 hover:text-blue-500">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    function decodeJWT(string){
-      var arr = string.split('.');
-      return { header: JSON.parse(atob(arr[0])), payload: JSON.parse(atob(arr[1])), secret: arr[2] }
-    }
-  
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the form from submitting
+    <div class="login-container flex justify-center items-center h-screen">
+        <form id="login-form"
+            class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md w-full">
+            <h2 class="text-2xl font-semibold text-center mb-4">Login to TideTrade</h2>
+            <div class="form-group mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                <input type="email" id="email" name="email"
+                    class="form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Enter email" required>
+            </div>
+            <div class="form-group mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" name="password"
+                    class="form-control mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Password" required>
+            </div>
+            <button type="submit"
+                class="btn btn-primary w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Login</button>
+            <p class="register-link text-center mt-4"><a href="register.html"
+                    class="text-blue-500 hover:underline">Not registered yet? Register here</a></p>
+            <p class="forgot-password-link text-center mt-2"><a href="forgot-password.html"
+                    class="text-blue-500 hover:underline">Forgot Password?</a></p>
+        </form>
+    </div>
 
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-
-      if (!email || !password) {
-        alert('Please fill in all fields');
-        return;
-      }
-
-      fetch('https://mk-services.onrender.com/api/token/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
+    <script>
+        function decodeJWT(string) {
+            var arr = string.split('.');
+            return {
+                header: JSON.parse(atob(arr[0])),
+                payload: JSON.parse(atob(arr[1])),
+                secret: arr[2]
+            }
         }
-        return response.json();
-      })
-      .then(data => {
-        if (data.access && data.refresh) {
-          localStorage.setItem('access', data.access);
-          localStorage.setItem('refresh', data.refresh);
 
-          const access = localStorage.getItem('access');
-          const decoded = decodeJWT(access);
-          const user_id = decoded.payload.user_id;
-          localStorage.setItem('user_id', user_id);
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting
 
-          fetch(`https://mk-services.onrender.com/services/api/users/${user_id}/`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${access}`
-            },
-          })
-          .then(response => {
-            try {
-              if (!response.ok) {
-                throw new Error('Network response was not ok');
-              }
-              return response.json();
-            } catch (error) {
-              console.log(error);
-            }
-          })
-          .then(data => {
-            console.log(data);
-            switch (data.user_type) {
-              case 'client':
-                localStorage.setItem('user_type', 'client');
-                window.location.href = 'client.html';
-                break;
-              case 'provider':
-                localStorage.setItem('user_type', 'provider');
-                window.location.href = 'provider.html';
-                break;
-              case 'admin':
-                localStorage.setItem('user_type', 'admin');
-                window.location.href = 'admin.html';
-                break;
-              default:
-                throw new Error('Invalid user type');
-            }
-            // Optionally store additional user data
-            if (data.email) {
-              localStorage.setItem('email', data.email);
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert(`An error occurred: ${error.message}`);
-          });
-        } else {
-          throw new Error('Invalid login credentials');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert(`An error occurred: ${error.message}`);
-      });
-    });
-  </script>
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
 
-</body>
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Replace with your API endpoint
+            fetch('http://localhost:8000/api/token/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password
+                    }),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.access && data.refresh) {
+                        localStorage.setItem('access', data.access);
+                        localStorage.setItem('refresh', data.refresh);
+
+                        const access = localStorage.getItem('access');
+                        const decoded = decodeJWT(access);
+                        const user_id = decoded.payload.user_id;
+                        localStorage.setItem('user_id', user_id);
+
+                        fetch(`https://mk-services.onrender.com/services/api/users/${user_id}/`, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${access}`
+                                },
+                            })
+                            .then(response => {
+                                try {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                            })
+                            .then(data => {
+                                console.log(data);
+                                switch (data.user_type) {
+                                    case 'client':
+                                        localStorage.setItem('user_type', 'client');
+                                        window.location.href = 'client.html';
+                                        break;
+                                    case 'provider':
+                                        localStorage.setItem('user_type', 'provider');
+                                        window.location.href = 'provider.html';
+                                        break;
+                                    case 'admin':
+                                        localStorage.setItem('user_type', 'admin');
+                                        window.location.href = 'admin.html';
+                                        break;
+                                    default:
+                                        throw new Error('Invalid user type');
+                                }
+                                // Optionally store additional user data
+                                if (data.email) {
+                                    localStorage.setItem('email', data.email);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert(`An error occurred: ${error.message}`);
+                            });
+                    } else {
+                        throw new Error('Invalid login credentials');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert(`An error occurred: ${error.message}`);
+                });
+        });
+    </script>
+  </body>
+
 </html>
