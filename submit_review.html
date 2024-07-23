@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit a Review</title>
+</head>
+<body>
+    <h1>Submit a Review</h1>
+    <form id="reviewForm">
+        <input type="hidden" id="service_id" value="1">
+        <input type="hidden" id="user_id" value="1">
+        <label for="rating">Rating (1-5):</label>
+        <input type="number" id="rating" min="1" max="5" required><br>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" required></textarea><br>
+        <button type="submit">Submit Review</button>
+    </form>
+
+    <script>
+        document.getElementById('reviewForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const service_id = document.getElementById('service_id').value;
+            const user_id = document.getElementById('user_id').value;
+            const rating = document.getElementById('rating').value;
+            const comment = document.getElementById('comment').value;
+
+            fetch('submit_review.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `service_id=${service_id}&user_id=${user_id}&rating=${rating}&comment=${comment}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
