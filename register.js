@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 alert('User registered successfully');
-                window.location.href = '/login.html'; // Navigate to the sign-in page
+                window.location.href = 'login.html';
             } else {
                 const errorData = await response.json();
                 alert(`Error: ${errorData.message || response.statusText}`);
