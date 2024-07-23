@@ -3,17 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - TideTrade</title>
-    <link rel="stylesheet" href="services.css">
+    <title>Services</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100">
     <header>
-        <h1>Our Services</h1>
+        <nav class="bg-white shadow-lg">
+            <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+                <h1 class="text-2xl font-semibold">TideTrade</h1>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="hit.html">How It Works</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <!-- <li><a href="login.html">Login</a></li> -->
+                </ul>
+            </div>
+        </nav>
     </header>
-    <main id="services-container">
-        <!-- Services will be populated here by JavaScript -->
-    </main>
-    <script src="script.js"></script>
+
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-semibold mb-4">Services</h2>
+        <div id="servicesContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- Service cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Fetch API script -->
+    <script>
+        // Function to fetch services data and create HTML cards
+        function fetchServicesAndRenderCards() {
+            fetch('https://mk-services.onrender.com/services/api/services/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Services:', data);
+                    renderServiceCards(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Optionally, handle and display the error
+                    alert('Error fetching services. Please try again.');
+                });
+        }
+
+        // Function to render service cards
+        function renderServiceCards(services) {
+            const servicesContainer = document.getElementById('servicesContainer');
+            servicesContainer.innerHTML = '';
+
+            services.forEach(service => {
+                const cardHtml = `
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                        <img src="${service.thumbnail}" alt="Thumbnail" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">${service.title}</h3>
+                            <p class="text-gray-700 mb-2">${service.description}</p>
+                            <p class="text-gray-600 mb-2">Category: ${service.category}</p>
+                            <p class="text-gray-600 mb-4">Price: $${service.price}</p>
+                            <button class="details-btn inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Book Service</button>
+                        </div>
+                    </div>
+                `;
+                servicesContainer.innerHTML += cardHtml;
+            });
+
+            // Add event listeners to details buttons
+            const detailsButtons = document.querySelectorAll('.details-btn');
+            detailsButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    // Alert message for demonstration
+                    window.alert('Service booked');
+                });
+            });
+        }
+
+        // Load services on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchServicesAndRenderCards();
+        });
+    </script>
 </body>
 </html>
-
